@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Plötzlich alt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Plötzlich alt</h1>
+    <p class="subtitle">Foto aufnehmen &amp; in die Zukunft blicken</p>
+  </header>
+
+  <main id="app">
+
+    <!-- SCHRITT 1: Kamera / Foto -->
+    <section id="step-camera" class="step">
+      <div class="camera-wrap">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="captureCanvas" hidden></canvas>
+        <img id="photoPreview" alt="Aufgenommenes Foto" hidden />
+        <button id="switchCameraBtn" class="icon-btn" title="Kamera wechseln" hidden>⟳</button>
+      </div>
+      <div id="cameraError" class="error-box" hidden></div>
+
+      <div class="button-row">
+        <button id="shootBtn" class="primary-btn">📷 Foto aufnehmen</button>
+        <label class="secondary-btn file-label">
+          Foto hochladen
+          <input type="file" id="fileInput" accept="image/*" hidden />
+        </label>
+      </div>
+
+      <div class="button-row" id="retakeRow" hidden>
+        <button id="retakeBtn" class="secondary-btn">Neu aufnehmen</button>
+        <button id="usePhotoBtn" class="primary-btn">Weiter →</button>
+      </div>
+    </section>
+
+    <!-- SCHRITT 2: Alter eingeben -->
+    <section id="step-age" class="step" hidden>
+      <div class="thumb-wrap">
+        <img id="thumbPreview" alt="Vorschau" />
+      </div>
+
+      <div class="field">
+        <label for="currentAge">Aktuelles Alter</label>
+        <input type="number" id="currentAge" min="1" max="110" value="35" inputmode="numeric" />
+      </div>
+
+      <div class="field">
+        <label for="targetAge">Wunschalter in der Zukunft</label>
+        <input type="number" id="targetAge" min="1" max="110" value="75" inputmode="numeric" />
+      </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" id="showAgeLabel" checked />
+        Alter unten rechts im Bild andrucken
+      </label>
+
+      <div class="button-row">
+        <button id="backToCameraBtn" class="secondary-btn">← Zurück</button>
+        <button id="generateBtn" class="primary-btn">✨ Altern lassen</button>
+      </div>
+    </section>
+
+    <!-- SCHRITT 3: Laden -->
+    <section id="step-loading" class="step" hidden>
+      <div class="spinner"></div>
+      <p>Das Bild wird gealtert … das kann bis zu 30 Sekunden dauern.</p>
+    </section>
+
+    <!-- SCHRITT 4: Ergebnis -->
+    <section id="step-result" class="step" hidden>
+      <canvas id="resultCanvas"></canvas>
+      <div id="resultError" class="error-box" hidden></div>
+      <div class="button-row">
+        <button id="downloadBtn" class="primary-btn">⬇️ Speichern</button>
+        <button id="shareBtn" class="secondary-btn" hidden>Teilen</button>
+      </div>
+      <div class="button-row">
+        <button id="restartBtn" class="link-btn">Neues Foto aufnehmen</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
